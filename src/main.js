@@ -4,7 +4,6 @@ import { saveNote } from './noteAPI';
 import { deleteNote } from './noteAPI';
 import  QRCode  from 'qrcode';
 
-
 const notesContainer = document.getElementById("savedNotes");
 const titleInputField = document.getElementById("noteTitle");
 const contentInputField = document.getElementById("noteContent");
@@ -64,16 +63,15 @@ function createQRCode() {
   notes.forEach((note) => {
   let canvasEl = document.getElementById(note.canvasId);
   
-  let sampleText = 'miluji programovani❤️‍🔥';
+  let sampleText = note.techSaying;
 
   QRCode.toCanvas(canvasEl, sampleText, function (error) {
   if (error) console.error(error);
 })
   })
-
 }
 
-function clickSaveButton() {
+async function clickSaveButton() {
     const title = titleInputField.value;
     const content = contentInputField.value;
     
@@ -87,7 +85,7 @@ function clickSaveButton() {
     if(currentlySelectedNoteEl) {
       currentId = currentlySelectedNoteEl.getAttribute("data_id");
     }
-    saveNote(title, content, Number(currentId));
+    await saveNote(title, content, Number(currentId));
     titleInputField.value = '';
     contentInputField.value = '';
     displayNotesList();

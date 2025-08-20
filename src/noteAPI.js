@@ -4,7 +4,8 @@ export function getNotes() {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 }
 
-export function saveNote(title, content, id = undefined) {
+export async function saveNote(title, content, id = undefined) {
+    await getRandomTechSaying();
     const notes = getNotes();
     if(!id) {
         notes.push({
@@ -13,7 +14,7 @@ export function saveNote(title, content, id = undefined) {
         lastUpdated: new Date().getTime(),
         id: getNextId(),
         canvasId: getCanvasId(),
-        matchedMeme: getRandomMeme(),
+        techSaying: await getRandomTechSaying(),
     });
     } else {
         const indexOfNoteWithId = notes.findIndex(note => note.id === id);
@@ -52,6 +53,11 @@ export function deleteNote(idToDelete) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredNotes));
 }
 
-function getRandomMeme() {
-
+async function getRandomTechSaying() {
+  let firstResponse = `https://techy-api.vercel.app/api/text`;
+    let response = await fetch(firstResponse);
+    //let techySentence = await response.json();
+    let techySentence = await response.text();
+    return techySentence;
 }
+
