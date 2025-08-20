@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes QR Code</title>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png" sizes="16x16">
+    <script type="module" src="/src/main.js" defer></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside class="sidebar">
+            <button class="add_new">
+                <img src="/plus-icon.png" class="plus_icon" alt="Ikone Plus im Kreis">
+                <span class="btn_description">Neue Notiz erstellen</span>
+            </button>
+            <div class="saved_notes" id="savedNotes">
+            </div>
+        </aside>
+
+        <main class="main_content">
+            <header>
+                <input type="text" class="note_title_input nofocus" id="noteTitle" placeholder="Überschrift eingeben..."
+                    required>
+                <div class="action_btns">
+                    <button id="saveBtn" role="save note" class="action_btn">
+                        <img src="/save-icon.png" class="icons" alt="Diskette Symbol">
+                    </button>
+                    <button id="deleteBtn" role="delete note" class="action_btn">
+                        <img src="/delete-icon.png" class="icons" alt="Abfalleimer">
+                    </button>
+                </div>
+            </header>
+            <textarea class="note_body_input nofocus" placeholder="Notiz erstellen..." id="noteContent"
+                required></textarea>
+        </main>
+    </div>
+</body>
+
+</html>
