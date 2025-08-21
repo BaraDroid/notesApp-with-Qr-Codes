@@ -246,5 +246,12 @@ header {
   height: 100px;
   width: 100px;
   aspect-ratio: 1 / 1;
-  background-color: red;
+  background-color: var(--primary-color);
+}
+
+/**********RESPONSIVENESS**************************/
+@media(max-width: 1200px) {
+  .sidebar {
+    width: 100%;
+  }
 }

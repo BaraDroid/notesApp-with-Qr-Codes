@@ -56,7 +56,6 @@ export function deleteNote(idToDelete) {
 async function getRandomTechSaying() {
   let firstResponse = `https://techy-api.vercel.app/api/text`;
     let response = await fetch(firstResponse);
-    //let techySentence = await response.json();
     let techySentence = await response.text();
     return techySentence;
 }
