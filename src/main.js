@@ -49,29 +49,13 @@ function displayNotesList() {
         <span class="created_at">${new Date(note.lastUpdated).toLocaleString(
           "de-DE"
         )}</span>
-        <canvas class="qr_canvas" id="${note.canvasId}"></canvas>
+        <img src="${note.qrDataUrl}" alt="QR-Code zur Notiz">
         </div>
         `;
         
   });
   notesContainer.innerHTML = html;
-  //createQRCode();
 }
-
-// function createQRCode() {
-//   const notes = getNotes();
-//   notes.forEach((note) => {
-//   let canvasEl = document.getElementById(note.canvasId);
-//   canvasEl.style.width = '300px';
-//   canvasEl.style.height = '300px';
-  
-//   let sampleText = note.techSaying;
-
-//   QRCode.toCanvas(canvasEl, sampleText, function (error) {
-//   if (error) console.error(error);
-// })
-//   })
-// }
 
 async function clickSaveButton() {
     const title = titleInputField.value;

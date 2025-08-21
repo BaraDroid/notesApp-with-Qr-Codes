@@ -1,4 +1,5 @@
 import  QRCode  from 'qrcode';
+let qrData = '';
 
 const LOCAL_STORAGE_KEY = 'notizapp-notes';
 
@@ -9,16 +10,23 @@ export function getNotes() {
 export async function saveNote(title, content, id = undefined) {
     await getRandomTechSaying();
     const notes = getNotes();
+    const canvasId = getCanvasId();
+    const techSaying = await getRandomTechSaying();
+    const qrDataUrl = await QRCodeToDataUrl(techSaying);
     if(!id) {
         notes.push({
         title,
         content,
         lastUpdated: new Date().getTime(),
         id: getNextId(),
-        canvasId: getCanvasId(),
-        techSaying: await getRandomTechSaying(),
-        qrImg: createQRCode(canvasId, techSaying),
+        canvasId,
+        techSaying,
+        qrDataUrl,
     });
+    notes.forEach(note => {
+        console.log('ich bin in der note',note.qrDataUrl);
+    });
+    
     } else {
         const indexOfNoteWithId = notes.findIndex(note => note.id === id);
         if(indexOfNoteWithId !== -1) {
@@ -29,7 +37,7 @@ export async function saveNote(title, content, id = undefined) {
                 id,
                 canvasId: canvasIdValue,
                 techSaying,
-                qrImg,
+                qrDataUrl,
             }
         }
     }
@@ -64,14 +72,11 @@ async function getRandomTechSaying() {
     return techySentence;
 }
 
-function createQRCode(canvasElId, motto) {
-  let canvasEl = document.getElementById(canvasElId);
-  canvasEl.style.width = '300px';
-  canvasEl.style.height = '300px';
-  
-  let sampleText = motto;
-
-  QRCode.toCanvas(canvasEl, sampleText, function (error) {
-  if (error) console.error(error);
-  })
+async function QRCodeToDataUrl(motto) {
+    let myUrl;
+QRCode.toDataURL(motto, function (err, url) {
+  console.log(url);
+  myUrl = url;
+});
+return myUrl;
 }
