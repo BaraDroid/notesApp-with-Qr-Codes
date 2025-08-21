@@ -2,7 +2,7 @@ import './style.css'
 import { getNotes } from './noteAPI';
 import { saveNote } from './noteAPI';
 import { deleteNote } from './noteAPI';
-import  QRCode  from 'qrcode';
+
 
 const notesContainer = document.getElementById("savedNotes");
 const titleInputField = document.getElementById("noteTitle");
@@ -55,23 +55,23 @@ function displayNotesList() {
         
   });
   notesContainer.innerHTML = html;
-  createQRCode();
+  //createQRCode();
 }
 
-function createQRCode() {
-  const notes = getNotes();
-  notes.forEach((note) => {
-  let canvasEl = document.getElementById(note.canvasId);
-  canvasEl.style.width = '300px';
-  canvasEl.style.height = '300px';
+// function createQRCode() {
+//   const notes = getNotes();
+//   notes.forEach((note) => {
+//   let canvasEl = document.getElementById(note.canvasId);
+//   canvasEl.style.width = '300px';
+//   canvasEl.style.height = '300px';
   
-  let sampleText = note.techSaying;
+//   let sampleText = note.techSaying;
 
-  QRCode.toCanvas(canvasEl, sampleText, function (error) {
-  if (error) console.error(error);
-})
-  })
-}
+//   QRCode.toCanvas(canvasEl, sampleText, function (error) {
+//   if (error) console.error(error);
+// })
+//   })
+// }
 
 async function clickSaveButton() {
     const title = titleInputField.value;

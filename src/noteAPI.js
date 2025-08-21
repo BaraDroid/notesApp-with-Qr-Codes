@@ -1,3 +1,5 @@
+import  QRCode  from 'qrcode';
+
 const LOCAL_STORAGE_KEY = 'notizapp-notes';
 
 export function getNotes() {
@@ -15,6 +17,7 @@ export async function saveNote(title, content, id = undefined) {
         id: getNextId(),
         canvasId: getCanvasId(),
         techSaying: await getRandomTechSaying(),
+        qrImg: createQRCode(canvasId, techSaying),
     });
     } else {
         const indexOfNoteWithId = notes.findIndex(note => note.id === id);
@@ -60,3 +63,14 @@ async function getRandomTechSaying() {
     return techySentence;
 }
 
+function createQRCode(canvasElId, motto) {
+  let canvasEl = document.getElementById(canvasElId);
+  canvasEl.style.width = '300px';
+  canvasEl.style.height = '300px';
+  
+  let sampleText = motto;
+
+  QRCode.toCanvas(canvasEl, sampleText, function (error) {
+  if (error) console.error(error);
+  })
+}
