@@ -62,6 +62,8 @@ function createQRCode() {
   const notes = getNotes();
   notes.forEach((note) => {
   let canvasEl = document.getElementById(note.canvasId);
+  canvasEl.style.width = '300px';
+  canvasEl.style.height = '300px';
   
   let sampleText = note.techSaying;
 

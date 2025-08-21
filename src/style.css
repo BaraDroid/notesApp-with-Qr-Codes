@@ -1,9 +1,17 @@
 :root {
   --primary-color: 350, 80, 112;
   --primary-color-rgb: rgb(var(--primary-color));
-  --primary-color--hover: color-mix(in oklab, var(--primary-color-rgb), white 64%);
+  --primary-color--hover: color-mix(
+    in oklab,
+    var(--primary-color-rgb),
+    white 64%
+  );
   --text-color-default: black;
   --text-color-light: #95969b;
+}
+
+html {
+  width: 100%;
 }
 
 * {
@@ -33,13 +41,13 @@
 }
 
 button {
-    cursor: pointer;
-    border: unset;
-    transition: all .255s ease-in-out;
+  cursor: pointer;
+  border: unset;
+  transition: all 0.255s ease-in-out;
 }
 
 button:hover {
-    background-color: var(--primary-color--hover);
+  background-color: var(--primary-color--hover);
 }
 
 .wrapper {
@@ -61,36 +69,36 @@ button:hover {
 }
 
 ::-webkit-scrollbar {
-  width: .5rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color--hover); 
+  background: var(--primary-color--hover);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color-rgb); 
+  background: var(--primary-color-rgb);
 }
 
 .add_new {
-    background-color: var(--primary-color-rgb);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
+  background-color: var(--primary-color-rgb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
   border-radius: 0.8rem;
 }
 
 .btn_description {
-    font-family: 'Poppins-bold';
-    color: white;
-    font-size: 1rem;
-    text-wrap: nowrap;
+  font-family: "Poppins-bold";
+  color: white;
+  font-size: 1rem;
+  text-wrap: nowrap;
 }
 
 .plus_icon {
-    height: 3rem;
+  height: 3rem;
 }
 
 .saved_notes {
@@ -105,18 +113,20 @@ button:hover {
   padding: 2rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 0.8rem;
-  transition: all .255s ease-in-out;
+  transition: all 0.255s ease-in-out;
 }
 
 .note_card:not(.note_selected) {
   cursor: pointer;
 }
 
-.note_card:hover, .note_selected {
+.note_card:hover,
+.note_selected {
   background-color: rgba(var(--primary-color), 0.2);
 }
 
-.note_title, .note_content {
+.note_title,
+.note_content {
   width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -125,15 +135,15 @@ button:hover {
 
 span:first-child {
   color: black;
-  font-family: 'Poppins-bold';
+  font-family: "Poppins-bold";
 }
 
 .created_at {
   color: var(--text-color-light);
   position: absolute;
-  bottom: .25rem;
+  bottom: 0.25rem;
   right: 1rem;
-  font-family: 'Poppins-italic';
+  font-family: "Poppins-italic";
   font-size: 1rem;
 }
 
@@ -154,9 +164,9 @@ header {
 }
 
 .note_title_input {
-  flex-grow: 1;
+  width: 100%;
   color: var(--text-color-default);
-  font-family: 'Poppins-bold';
+  font-family: "Poppins-bold";
   font-size: 3rem;
   border: unset;
 }
@@ -170,7 +180,7 @@ header {
   border-radius: 8px;
   height: 100%;
   aspect-ratio: 1/1;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .icons {
@@ -179,21 +189,21 @@ header {
 }
 
 .note_body_input {
-    flex-grow: 1;
-    font-size: 1.5rem;
-    color: var(--text-color-default);
-    border: unset;
-    resize: none;
-    width: 100%;
-    height: 100%;
+  flex-grow: 1;
+  font-size: 1.5rem;
+  color: var(--text-color-default);
+  border: unset;
+  resize: none;
+  width: 100%;
+  height: 100%;
 }
 
 .note_body_input::placeholder {
-    color: var(--text-color-light);
+  color: var(--text-color-light);
 }
 
 .nofocus {
-    outline: none;
+  outline: none;
 }
 
 #alert {
@@ -217,7 +227,7 @@ header {
 
 #toast_message {
   font-family: "Poppins";
-  color: var(--text-color-light)
+  color: var(--text-color-light);
 }
 
 .dismiss_btn {
@@ -225,7 +235,7 @@ header {
   height: fit-content;
   width: fit-content;
   aspect-ratio: 3 / 1;
-  font-family: 'Poppins-bold';
+  font-family: "Poppins-bold";
   border-radius: 5px;
   margin-left: 8px;
   background-color: var(--primary-color--hover);
@@ -250,8 +260,74 @@ header {
 }
 
 /**********RESPONSIVENESS**************************/
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .sidebar {
     width: 100%;
+  }
+  .note_title_input,
+  .focus {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1100px) {
+  .plus_icon {
+    height: 1.5rem;
+  }
+  .add_new {
+    padding: 1rem 0;
+  }
+  .sidebar {
+    width: 138%;
+  }
+}
+
+@media (max-width: 830px) {
+  .wrapper {
+    flex-direction: column-reverse;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .note_body_input {
+    min-height: 30dvh;
+  }
+}
+
+@media (max-width: 700px) {
+  .note_title_input {
+    font-size: 2rem;
+  }
+  .action_btns {
+    height: 3rem;
+  }
+  .add_new {
+    height: 3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .note_title_input,
+  .note_body_input,
+  .note_title,
+  .note_content {
+    font-size: 1rem;
+  }
+  .action_btns {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    bottom: -16dvh;
+  }
+  .note_body_input {
+    min-height: 15dvh;
+  }
+  .note_card {
+    padding: 1.5rem;
+  }
+  .sidebar {
+    padding-top: 0;
   }
 }
