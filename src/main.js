@@ -67,11 +67,17 @@ async function clickSaveButton() {
     }
 
     let currentId = undefined;
+    let qrImageId = undefined;
+    let techSaying = undefined;
+    let qrDataUrl = undefined;
     const currentlySelectedNoteEl = document.querySelector('.note_selected');
     if(currentlySelectedNoteEl) {
       currentId = currentlySelectedNoteEl.getAttribute("data_id");
+      qrImageId = getCurrentNote(currentId).qrImageId;
+      techSaying = getCurrentNote(currentId).techSaying;
+      qrDataUrl = getCurrentNote(currentId).qrDataUrl;
     }
-    await saveNote(title, content, Number(currentId));
+    await saveNote(title, content, Number(currentId), qrImageId, techSaying, qrDataUrl);
     titleInputField.value = '';
     contentInputField.value = '';
     displayNotesList();
@@ -113,4 +119,10 @@ function deleteBtnClick() {
   deleteNote(selectedNoteId);
   titleInputField.value = '';
   contentInputField.value = '';
+}
+
+function getCurrentNote(givenId) {
+  const notes = getNotes();
+  const searchedNote = notes.find(note => note.id.toString() === givenId);
+  return searchedNote;
 }

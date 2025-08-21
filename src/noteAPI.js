@@ -1,5 +1,4 @@
 import  QRCode  from 'qrcode';
-let qrData = '';
 
 const LOCAL_STORAGE_KEY = 'notizapp-notes';
 
@@ -7,24 +6,21 @@ export function getNotes() {
     return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 }
 
-export async function saveNote(title, content, id = undefined) {
+export async function saveNote(title, content, id = undefined, qrImageId = undefined, techSaying = undefined, qrDataUrl = undefined) {
     await getRandomTechSaying();
     const notes = getNotes();
-    const canvasId = getCanvasId();
-    const techSaying = await getRandomTechSaying();
-    const qrDataUrl = await QRCodeToDataUrl(techSaying);
     if(!id) {
+        const canvasId = getCanvasId();
+        const techSaying = await getRandomTechSaying();
+        const qrDataUrl = await QRCodeToDataUrl(techSaying);
         notes.push({
         title,
         content,
         lastUpdated: new Date().getTime(),
         id: getNextId(),
-        canvasId,
+        qrImageId,
         techSaying,
         qrDataUrl,
-    });
-    notes.forEach(note => {
-        console.log('ich bin in der note',note.qrDataUrl);
     });
     
     } else {
@@ -35,7 +31,7 @@ export async function saveNote(title, content, id = undefined) {
                 content,
                 lastUpdated: new Date().getTime(),
                 id,
-                canvasId: canvasIdValue,
+                qrImageId,
                 techSaying,
                 qrDataUrl,
             }
