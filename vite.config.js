@@ -1,5 +1,4 @@
 
-export default defineConfig({
-  // Ersetze '<REPO>' durch den Namen deines GitHub-Repositories
+export default {
   base: "/notesApp-with-Qr-Codes/",
-});
+};
