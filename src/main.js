@@ -49,7 +49,7 @@ function displayNotesList() {
         <span class="created_at">${new Date(note.lastUpdated).toLocaleString(
           "de-DE"
         )}</span>
-        <img src="${note.qrDataUrl}" alt="QR-Code zur Notiz">
+        <img src="${note.qrDataUrl}" class="qr_canvas" alt="QR-Code zur Notiz">
         </div>
         `;
         
