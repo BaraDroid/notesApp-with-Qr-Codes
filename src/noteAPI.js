@@ -28,7 +28,8 @@ export async function saveNote(title, content, id = undefined) {
                 lastUpdated: new Date().getTime(),
                 id,
                 canvasId: canvasIdValue,
-                matchedMeme,
+                techSaying,
+                qrImg,
             }
         }
     }
